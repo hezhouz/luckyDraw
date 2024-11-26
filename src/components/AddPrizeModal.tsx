@@ -12,8 +12,9 @@ const AddPrizeModal: React.FC<AddPrizeModalProps> = ({ onClose, onAdd, currentTo
   const [formData, setFormData] = useState({
     name: '',
     image: '',
-    rarity: 'N',
-    probability: 0
+    rarity: 'N' as Prize['rarity'],
+    probability: 0,
+    repeatable: false
   });
 
   const remainingProbability = 100 - currentTotalProbability;
@@ -24,7 +25,10 @@ const AddPrizeModal: React.FC<AddPrizeModalProps> = ({ onClose, onAdd, currentTo
       alert(`概率总和不能超过100%。您最多可以添加${remainingProbability.toFixed(1)}%`);
       return;
     }
-    onAdd(formData);
+    onAdd({
+      ...formData,
+      repeatable: formData.rarity === 'N'
+    });
   };
 
   return (
@@ -82,10 +86,10 @@ const AddPrizeModal: React.FC<AddPrizeModalProps> = ({ onClose, onAdd, currentTo
               onChange={(e) => setFormData({ ...formData, rarity: e.target.value as Prize['rarity']})}
               className="w-full bg-white/5 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
             >
-              <option value="SSR">SSR - 超稀有</option>
-              <option value="SR">SR - 稀有</option>
-              <option value="R">R - 普通</option>
-              <option value="N">N - 常见</option>
+              <option value="SSR">SSR - 超稀有（不可重复）</option>
+              <option value="SR">SR - 稀有（不可重复）</option>
+              <option value="R">R - 普通（不可重复）</option>
+              <option value="N">N - 常见（可重复）</option>
             </select>
           </div>
 

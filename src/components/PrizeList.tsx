@@ -5,15 +5,18 @@ import { Prize } from '../types';
 interface PrizeListProps {
   prizes: Prize[];
   onRemove: (id: string) => void;
+  drawnPrizes: Set<string>;
 }
 
-const PrizeList: React.FC<PrizeListProps> = ({ prizes, onRemove }) => {
+const PrizeList: React.FC<PrizeListProps> = ({ prizes, onRemove, drawnPrizes }) => {
   return (
     <div className="grid gap-4">
       {prizes.map((prize) => (
         <div
           key={prize.id}
-          className="bg-white/5 rounded-lg p-4 flex items-center gap-4 hover:bg-white/10 transition-colors group"
+          className={`bg-white/5 rounded-lg p-4 flex items-center gap-4 hover:bg-white/10 transition-colors group ${
+            !prize.repeatable && drawnPrizes.has(prize.id) ? 'opacity-50' : ''
+          }`}
         >
           <img
             src={prize.image}
@@ -34,6 +37,16 @@ const PrizeList: React.FC<PrizeListProps> = ({ prizes, onRemove }) => {
               <span className="text-sm text-purple-200">
                 概率：{prize.probability}%
               </span>
+              {!prize.repeatable && drawnPrizes.has(prize.id) && (
+                <span className="text-xs px-2 py-1 bg-red-400/20 text-red-300 rounded">
+                  已抽取
+                </span>
+              )}
+              {prize.repeatable && (
+                <span className="text-xs px-2 py-1 bg-green-400/20 text-green-300 rounded">
+                  可重复
+                </span>
+              )}
             </div>
           </div>
           <button

@@ -1,9 +1,10 @@
 export interface Prize {
   id: string;
   name: string;
-  image: string;
+  image: any;
   rarity: 'SSR' | 'SR' | 'R' | 'N';
   probability: number;
+  repeatable: boolean;
 }
 
 export interface PrizeHistoryEntry {
