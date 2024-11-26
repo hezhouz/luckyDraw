@@ -157,7 +157,7 @@ function App() {
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold mb-2 flex items-center justify-center gap-2">
             <Gift className="w-8 h-8" />
-            祝 周明珠 25岁 生日快乐！！
+            祝 宝贝老婆 25岁 生日快乐！！
             <Gift className="w-8 h-8" />
           </h1>
           <p className="text-purple-200">愿 你此生无事伴心弦，所念皆所愿。</p>
