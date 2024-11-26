@@ -157,9 +157,10 @@ function App() {
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold mb-2 flex items-center justify-center gap-2">
             <Gift className="w-8 h-8" />
-            扭蛋抽奖系统
+            祝 周明珠 25岁 生日快乐！！
+            <Gift className="w-8 h-8" />
           </h1>
-          <p className="text-purple-200">试试你的运气，体验日式扭蛋机的乐趣！</p>
+          <p className="text-purple-200">愿 你此生无事伴心弦，所念皆所愿。</p>
           {availablePrizesCount < prizes.length && (
             <p className="text-yellow-300 mt-2">
               还剩 {availablePrizesCount} 个奖品可以抽取
